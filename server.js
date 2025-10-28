@@ -1,8 +1,8 @@
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import userRoutes from "./src/routes/userRoutes.js";
 import authRoutes from "./src/routes/auth.js";
+import productRoutes from "./src/routes/productRoutes.js";
 import redis from "./db/redis.js";
 
 const app = express();
@@ -16,8 +16,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/users", userRoutes);
-
 app.use("/auth", authRoutes);
+
+app.use("/products", productRoutes);
 
 httpServer.listen(3000, () => console.log("Servidor en http://localhost:3000"));
